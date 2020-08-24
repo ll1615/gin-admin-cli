@@ -17,7 +17,7 @@ func insertRouterAPI(ctx context.Context, dir, name string) error {
 	fullname := getRouterAPIFileName(dir)
 
 	pname := util.ToPlural(util.ToLowerUnderlinedNamer(name))
-	pname = strings.Replace(pname, "_", "-", -1)
+	// pname = strings.Replace(pname, "_", "-", -1)
 	apiContent, err := execParseTpl(routerAPITpl, map[string]string{
 		"Name":       name,
 		"PluralName": pname,
