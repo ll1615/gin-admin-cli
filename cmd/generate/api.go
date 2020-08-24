@@ -46,6 +46,7 @@ import (
 	"{{.PkgName}}/internal/app/bll"
 	"{{.PkgName}}/internal/app/ginplus"
 	"{{.PkgName}}/internal/app/schema"
+	"{{.PkgName}}/pkg/util"
 	"github.com/gin-gonic/gin"
 	"github.com/google/wire"
 )
@@ -80,7 +81,7 @@ func (a *{{.Name}}) Query(c *gin.Context) {
 // Get 查询指定数据
 func (a *{{.Name}}) Get(c *gin.Context) {
 	ctx := c.Request.Context()
-	item, err := a.{{.Name}}Bll.Get(ctx, c.Param("id"))
+	item, err := a.{{.Name}}Bll.Get(ctx, util.S(c.Param("id")).DefaultInt(0))
 	if err != nil {
 		ginplus.ResError(c, err)
 		return
@@ -97,8 +98,7 @@ func (a *{{.Name}}) Create(c *gin.Context) {
 		return
 	}
 
-	item.Creator = ginplus.GetUserID(c)
-	result, err := a.{{.Name}}Bll.Create(ctx, item)
+	result, err := a.{{.Name}}Bll.Create(ctx, &item)
 	if err != nil {
 		ginplus.ResError(c, err)
 		return
@@ -115,7 +115,7 @@ func (a *{{.Name}}) Update(c *gin.Context) {
 		return
 	}
 
-	err := a.{{.Name}}Bll.Update(ctx, c.Param("id"), item)
+	err := a.{{.Name}}Bll.Update(ctx, util.S(c.Param("id")).DefaultInt(0), &item)
 	if err != nil {
 		ginplus.ResError(c, err)
 		return
@@ -126,7 +126,7 @@ func (a *{{.Name}}) Update(c *gin.Context) {
 // Delete 删除数据
 func (a *{{.Name}}) Delete(c *gin.Context) {
 	ctx := c.Request.Context()
-	err := a.{{.Name}}Bll.Delete(ctx, c.Param("id"))
+	err := a.{{.Name}}Bll.Delete(ctx, util.S(c.Param("id")).DefaultInt(0))
 	if err != nil {
 		ginplus.ResError(c, err)
 		return

@@ -25,11 +25,7 @@ func getSchemaFileName(dir, name string) string {
 func genSchema(ctx context.Context, pkgName, dir, name, comment string, fields ...schemaField) error {
 	var tfields []schemaField
 
-	tfields = append(tfields, schemaField{Name: "ID", Comment: "唯一标识", Type: "string"})
 	tfields = append(tfields, fields...)
-	tfields = append(tfields, schemaField{Name: "Creator", Comment: "创建者", Type: "string"})
-	tfields = append(tfields, schemaField{Name: "CreatedAt", Comment: "创建时间", Type: "time.Time"})
-	tfields = append(tfields, schemaField{Name: "UpdatedAt", Comment: "更新时间", Type: "time.Time"})
 
 	buf := new(bytes.Buffer)
 	for _, field := range tfields {
@@ -86,8 +82,6 @@ const schemaTpl = `
 package schema
 
 import (
-	"time"
-
 	"{{.PkgName}}/pkg/util"
 )
 

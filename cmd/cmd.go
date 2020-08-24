@@ -101,16 +101,21 @@ func GenerateCommand() cli.Command {
 				Name:  "storage, s",
 				Usage: "指定model的实现存储（默认gorm，支持：mongo/gorm）",
 			},
+			&cli.BoolFlag{
+				Name:  "override, o",
+				Usage: "是否以覆盖模式生成文件",
+			},
 		},
 		Action: func(c *cli.Context) error {
 			cfg := generate.Config{
-				Dir:     c.String("dir"),
-				PkgName: c.String("pkg"),
-				Name:    c.String("name"),
-				Comment: c.String("comment"),
-				File:    c.String("file"),
-				Modules: c.String("module"),
-				Storage: c.String("storage"),
+				Dir:      c.String("dir"),
+				PkgName:  c.String("pkg"),
+				Name:     c.String("name"),
+				Comment:  c.String("comment"),
+				File:     c.String("file"),
+				Modules:  c.String("module"),
+				Storage:  c.String("storage"),
+				Override: c.Bool("override"),
 			}
 
 			if cfg.Dir == "" {

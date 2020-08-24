@@ -45,7 +45,6 @@ import (
 	"{{.PkgName}}/internal/app/bll"
 	"{{.PkgName}}/internal/app/model"
 	"{{.PkgName}}/internal/app/schema"
-	"{{.PkgName}}/internal/app/iutil"
 	"{{.PkgName}}/pkg/errors"
 	"github.com/google/wire"
 )
@@ -66,7 +65,7 @@ func (a *{{.Name}}) Query(ctx context.Context, params schema.{{.Name}}QueryParam
 }
 
 // Get 查询指定数据
-func (a *{{.Name}}) Get(ctx context.Context, id string, opts ...schema.{{.Name}}GetOptions) (*schema.{{.Name}}, error) {
+func (a *{{.Name}}) Get(ctx context.Context, id int, opts ...schema.{{.Name}}GetOptions) (*schema.{{.Name}}, error) {
 	item, err := a.{{.Name}}Model.Get(ctx, id, opts...)
 	if err != nil {
 		return nil, err
@@ -78,8 +77,7 @@ func (a *{{.Name}}) Get(ctx context.Context, id string, opts ...schema.{{.Name}}
 }
 
 // Create 创建数据
-func (a *{{.Name}}) Create(ctx context.Context, item schema.{{.Name}}) (*schema.IDResult, error) {
-	item.ID = iutil.NewID()
+func (a *{{.Name}}) Create(ctx context.Context, item *schema.{{.Name}}) (*schema.IDResult, error) {
 	err := a.{{.Name}}Model.Create(ctx, item)
 	if err != nil {
 		return nil, err
@@ -89,7 +87,7 @@ func (a *{{.Name}}) Create(ctx context.Context, item schema.{{.Name}}) (*schema.
 }
 
 // Update 更新数据
-func (a *{{.Name}}) Update(ctx context.Context, id string, item schema.{{.Name}}) error {
+func (a *{{.Name}}) Update(ctx context.Context, id int, item *schema.{{.Name}}) error {
 	oldItem, err := a.{{.Name}}Model.Get(ctx, id)
 	if err != nil {
 		return err
@@ -97,14 +95,13 @@ func (a *{{.Name}}) Update(ctx context.Context, id string, item schema.{{.Name}}
 		return errors.ErrNotFound
 	}
 	item.ID = oldItem.ID
-	item.Creator = oldItem.Creator
 	item.CreatedAt = oldItem.CreatedAt
 
 	return a.{{.Name}}Model.Update(ctx, id, item)
 }
 
 // Delete 删除数据
-func (a *{{.Name}}) Delete(ctx context.Context, id string) error {
+func (a *{{.Name}}) Delete(ctx context.Context, id int) error {
 	oldItem, err := a.{{.Name}}Model.Get(ctx, id)
 	if err != nil {
 		return err

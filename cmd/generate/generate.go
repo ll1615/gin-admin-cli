@@ -11,13 +11,14 @@ import (
 
 // Config 配置参数
 type Config struct {
-	Dir     string
-	PkgName string
-	Name    string
-	Comment string
-	File    string
-	Storage string
-	Modules string
+	Dir      string
+	PkgName  string
+	Name     string
+	Comment  string
+	File     string
+	Storage  string
+	Modules  string
+	Override bool
 }
 
 // Exec 执行生成模块命令
@@ -77,6 +78,7 @@ func (a *Command) Exec() error {
 
 	pkgName := a.cfg.PkgName
 	ctx := context.Background()
+	ctx = context.WithValue(ctx, "override", a.cfg.Override)
 
 	if a.hasModule("schema") {
 		err = genSchema(ctx, pkgName, dir, item.StructName, item.Comment, item.toSchemaFields()...)

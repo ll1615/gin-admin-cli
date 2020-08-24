@@ -53,7 +53,7 @@ func createFile(ctx context.Context, name string, buf *bytes.Buffer) error {
 		}
 	}
 
-	if exists {
+	if exists && !ctx.Value("override").(bool) {
 		return fmt.Errorf("文件[%s]已经存在", name)
 	}
 

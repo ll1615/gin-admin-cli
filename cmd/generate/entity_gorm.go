@@ -25,7 +25,6 @@ func genGormEntity(ctx context.Context, pkgName, dir, name, comment string, fiel
 	var tfields []entityGormField
 
 	tfields = append(tfields, fields...)
-	tfields = append(tfields, entityGormField{Name: "Creator", Comment: "创建者", Type: "string"})
 
 	buf := new(bytes.Buffer)
 	for _, field := range tfields {

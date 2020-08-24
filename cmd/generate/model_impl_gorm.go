@@ -93,7 +93,7 @@ func (a *{{.Name}}) Query(ctx context.Context, params schema.{{.Name}}QueryParam
 }
 
 // Get 查询指定数据
-func (a *{{.Name}}) Get(ctx context.Context, id string, opts ...schema.{{.Name}}GetOptions) (*schema.{{.Name}}, error) {
+func (a *{{.Name}}) Get(ctx context.Context, id int, opts ...schema.{{.Name}}GetOptions) (*schema.{{.Name}}, error) {
 	db := entity.Get{{.Name}}DB(ctx, a.DB).Where("id=?", id)
 	var item entity.{{.Name}}
 	ok, err := FindOne(ctx, db, &item)
@@ -107,9 +107,10 @@ func (a *{{.Name}}) Get(ctx context.Context, id string, opts ...schema.{{.Name}}
 }
 
 // Create 创建数据
-func (a *{{.Name}}) Create(ctx context.Context, item schema.{{.Name}}) error {
-	eitem := entity.Schema{{.Name}}(item).To{{.Name}}()
+func (a *{{.Name}}) Create(ctx context.Context, item *schema.{{.Name}}) error {
+	eitem := entity.Schema{{.Name}}(*item).To{{.Name}}()
 	result := entity.Get{{.Name}}DB(ctx, a.DB).Create(eitem)
+	item.ID = eitem.ID
 	if err := result.Error; err != nil {
 		return errors.WithStack(err)
 	}
@@ -117,8 +118,8 @@ func (a *{{.Name}}) Create(ctx context.Context, item schema.{{.Name}}) error {
 }
 
 // Update 更新数据
-func (a *{{.Name}}) Update(ctx context.Context, id string, item schema.{{.Name}}) error {
-	eitem := entity.Schema{{.Name}}(item).To{{.Name}}()
+func (a *{{.Name}}) Update(ctx context.Context, id int, item *schema.{{.Name}}) error {
+	eitem := entity.Schema{{.Name}}(*item).To{{.Name}}()
 	result := entity.Get{{.Name}}DB(ctx, a.DB).Where("id=?", id).Updates(eitem)
 	if err := result.Error; err != nil {
 		return errors.WithStack(err)
@@ -127,7 +128,7 @@ func (a *{{.Name}}) Update(ctx context.Context, id string, item schema.{{.Name}}
 }
 
 // Delete 删除数据
-func (a *{{.Name}}) Delete(ctx context.Context, id string) error {
+func (a *{{.Name}}) Delete(ctx context.Context, id int) error {
 	result := entity.Get{{.Name}}DB(ctx, a.DB).Where("id=?", id).Delete(entity.{{.Name}}{})
 	if err := result.Error; err != nil {
 		return errors.WithStack(err)
