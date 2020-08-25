@@ -13,6 +13,7 @@ type schemaField struct {
 	Comment        string // 字段注释
 	Type           string // 字段类型
 	IsRequired     bool   // 是否必选项
+	JSONTag        string // json tag
 	BindingOptions string // binding配置项(不包含required，required由IsRequired控制)
 }
 
@@ -31,7 +32,13 @@ func genSchema(ctx context.Context, pkgName, dir, name, comment string, fields .
 	for _, field := range tfields {
 		buf.WriteString(fmt.Sprintf("%s \t %s \t", field.Name, field.Type))
 		buf.WriteByte('`')
-		buf.WriteString(fmt.Sprintf(`json:"%s"`, util.ToLowerUnderlinedNamer(field.Name)))
+
+		tag := util.ToLowerUnderlinedNamer(field.Name)
+		if field.JSONTag != "" {
+			tag = field.JSONTag
+		}
+
+		buf.WriteString(fmt.Sprintf(`json:"%s"`, tag))
 
 		bindingOpts := ""
 		if field.IsRequired {

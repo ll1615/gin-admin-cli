@@ -15,6 +15,7 @@ func (t TplItem) toSchemaFields() []schemaField {
 			Comment:        f.Comment,
 			Type:           f.StructFieldType,
 			IsRequired:     f.StructFieldRequired,
+			JSONTag:        f.JSONTag,
 			BindingOptions: f.BindingOptions,
 		})
 	}
@@ -52,6 +53,7 @@ type TplFieldItem struct {
 	StructFieldRequired bool   `yaml:"required"`        // 结构字段必选项
 	Comment             string `yaml:"comment"`         // 注释
 	StructFieldType     string `yaml:"type"`            // 结构体字段类型
+	JSONTag             string `yaml:"json_tag"`        // json tag
 	GormOptions         string `yaml:"gorm_options"`    // gorm配置项
 	BindingOptions      string `yaml:"binding_options"` // binding配置项
 }

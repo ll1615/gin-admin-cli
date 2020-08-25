@@ -33,7 +33,7 @@ func genGormEntity(ctx context.Context, pkgName, dir, name, comment string, fiel
 
 		gormTag := fmt.Sprintf("column:%s;", util.ToLowerUnderlinedNamer(field.Name))
 		if field.GormOptions != "" {
-			gormTag += field.GormOptions
+			gormTag = field.GormOptions
 		}
 		buf.WriteString(fmt.Sprintf(`gorm:"%s"`, gormTag))
 
@@ -96,7 +96,6 @@ func (a Schema{{.Name}}) To{{.Name}}() *{{.Name}} {
 
 // {{.Name}} {{.Comment}}实体
 type {{.Name}} struct {
-	Model
 	{{.Fields}}
 }
 
