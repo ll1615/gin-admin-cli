@@ -22,6 +22,10 @@ func insertEntityInjectGorm(ctx context.Context, dir, name string) error {
 			return
 		}
 
+		if injectStart == 1 && strings.Contains(line, injectContent){
+			injectStart = 0
+		}
+
 		if injectStart == 1 && strings.TrimSpace(line) == ").Error" {
 			injectStart = -1
 			data = injectContent

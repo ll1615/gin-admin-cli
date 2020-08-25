@@ -23,6 +23,10 @@ func insertModelInjectGorm(ctx context.Context, dir, name string) error {
 			return
 		}
 
+		if injectStart == 1 && strings.Contains(line, injectContent){
+			injectStart = 0
+		}
+
 		if injectStart == 1 && strings.Contains(line, ")") {
 			injectStart = -1
 			data = injectContent

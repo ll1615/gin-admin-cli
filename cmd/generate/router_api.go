@@ -34,6 +34,10 @@ func insertRouterAPI(ctx context.Context, dir, name string) error {
 			return
 		}
 
+		if apiStart == 1 && strings.Contains(line, pname){
+			apiStart = 0
+		}
+
 		if apiStart == 1 {
 			if v := strings.TrimSpace(line); v == "{" {
 				apiStack++

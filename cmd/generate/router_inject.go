@@ -20,6 +20,10 @@ func insertRouterInject(ctx context.Context, dir, name string) error {
 			return
 		}
 
+		if injectStart == 1 && strings.Contains(line, "*api."+name){
+			injectStart = 0
+		}
+
 		if injectStart == 1 && strings.Contains(line, "}") {
 			injectStart = -1
 			data = injectContent
