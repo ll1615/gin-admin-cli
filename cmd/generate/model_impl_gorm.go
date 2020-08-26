@@ -120,7 +120,7 @@ func (a *{{.Name}}) Create(ctx context.Context, item *schema.{{.Name}}) error {
 // Update 更新数据
 func (a *{{.Name}}) Update(ctx context.Context, id int, item *schema.{{.Name}}) error {
 	eitem := entity.Schema{{.Name}}(*item).To{{.Name}}()
-	result := entity.Get{{.Name}}DB(ctx, a.DB).Where("id=?", id).Updates(eitem)
+	result := entity.Get{{.Name}}DB(ctx, a.DB).Where("id=?", id).Save(eitem)
 	if err := result.Error; err != nil {
 		return errors.WithStack(err)
 	}
