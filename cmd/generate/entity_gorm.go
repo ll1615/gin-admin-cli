@@ -76,7 +76,8 @@ import (
 
 	"{{.PkgName}}/internal/app/schema"
 	"{{.PkgName}}/pkg/util"
-	"github.com/jinzhu/gorm"
+
+	"gorm.io/gorm"
 )
 
 // Get{{.Name}}DB 获取{{.Name}}存储

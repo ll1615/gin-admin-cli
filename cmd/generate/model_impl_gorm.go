@@ -47,8 +47,9 @@ import (
 	"{{.PkgName}}/internal/app/model/impl/gorm/entity"
 	"{{.PkgName}}/internal/app/schema"
 	"{{.PkgName}}/pkg/errors"
+
 	"github.com/google/wire"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 var _ model.I{{.Name}} = (*{{.Name}})(nil)

@@ -46,6 +46,7 @@ import (
 	"{{.PkgName}}/internal/app/model"
 	"{{.PkgName}}/internal/app/schema"
 	"{{.PkgName}}/pkg/errors"
+
 	"github.com/google/wire"
 )
 

@@ -47,6 +47,7 @@ import (
 	"{{.PkgName}}/internal/app/ginplus"
 	"{{.PkgName}}/internal/app/schema"
 	"{{.PkgName}}/pkg/util"
+
 	"github.com/gin-gonic/gin"
 	"github.com/google/wire"
 )

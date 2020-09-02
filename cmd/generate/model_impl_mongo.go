@@ -48,6 +48,7 @@ import (
 	"{{.PkgName}}/internal/app/model/impl/mongo/entity"
 	"{{.PkgName}}/internal/app/schema"
 	"{{.PkgName}}/pkg/errors"
+
 	"github.com/google/wire"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
