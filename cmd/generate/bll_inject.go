@@ -7,7 +7,7 @@ import (
 )
 
 func getBllInjectFileName(dir string) string {
-	fullname := fmt.Sprintf("%s/internal/app/bll/impl/bll/bll.go", dir)
+	fullname := fmt.Sprintf("%s/app/bll/impl/bll/bll.go", dir)
 	return fullname
 }
 
@@ -23,7 +23,7 @@ func insertBllInject(ctx context.Context, dir, name string) error {
 			return
 		}
 
-		if injectStart == 1 && strings.Contains(line, injectContent){
+		if injectStart == 1 && strings.Contains(line, injectContent) {
 			injectStart = 0
 		}
 

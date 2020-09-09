@@ -9,7 +9,7 @@ import (
 )
 
 func getAPIFileName(dir, name string) string {
-	fullname := fmt.Sprintf("%s/internal/app/api/a_%s.go", dir, util.ToLowerUnderlinedNamer(name))
+	fullname := fmt.Sprintf("%s/app/api/a_%s.go", dir, util.ToLowerUnderlinedNamer(name))
 	return fullname
 }
 
@@ -43,9 +43,9 @@ const apiTpl = `
 package api
 
 import (
-	"{{.PkgName}}/internal/app/bll"
-	"{{.PkgName}}/internal/app/ginplus"
-	"{{.PkgName}}/internal/app/schema"
+	"{{.PkgName}}/app/bll"
+	"{{.PkgName}}/app/ginplus"
+	"{{.PkgName}}/app/schema"
 	"{{.PkgName}}/pkg/util"
 
 	"github.com/gin-gonic/gin"

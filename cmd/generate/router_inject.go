@@ -7,7 +7,7 @@ import (
 )
 
 func getRouterInjectFileName(dir string) string {
-	fullname := fmt.Sprintf("%s/internal/app/router/router.go", dir)
+	fullname := fmt.Sprintf("%s/app/router/router.go", dir)
 	return fullname
 }
 
@@ -20,7 +20,7 @@ func insertRouterInject(ctx context.Context, dir, name string) error {
 			return
 		}
 
-		if injectStart == 1 && strings.Contains(line, "*api."+name){
+		if injectStart == 1 && strings.Contains(line, "*api."+name) {
 			injectStart = 0
 		}
 

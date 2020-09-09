@@ -8,7 +8,7 @@ import (
 )
 
 func getBllFileName(dir, name string) string {
-	fullname := fmt.Sprintf("%s/internal/app/bll/b_%s.go", dir, util.ToLowerUnderlinedNamer(name))
+	fullname := fmt.Sprintf("%s/app/bll/b_%s.go", dir, util.ToLowerUnderlinedNamer(name))
 	return fullname
 }
 
@@ -42,7 +42,7 @@ package bll
 import (
 	"context"
 
-	"{{.PkgName}}/internal/app/schema"
+	"{{.PkgName}}/app/schema"
 )
 
 // I{{.Name}} {{.Comment}}业务逻辑接口

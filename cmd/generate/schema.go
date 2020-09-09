@@ -18,7 +18,7 @@ type schemaField struct {
 }
 
 func getSchemaFileName(dir, name string) string {
-	fullname := fmt.Sprintf("%s/internal/app/schema/s_%s.go", dir, util.ToLowerUnderlinedNamer(name))
+	fullname := fmt.Sprintf("%s/app/schema/s_%s.go", dir, util.ToLowerUnderlinedNamer(name))
 	return fullname
 }
 

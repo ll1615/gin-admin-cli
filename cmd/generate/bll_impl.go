@@ -8,7 +8,7 @@ import (
 )
 
 func getBllImplFileName(dir, name string) string {
-	fullname := fmt.Sprintf("%s/internal/app/bll/impl/bll/b_%s.go", dir, util.ToLowerUnderlinedNamer(name))
+	fullname := fmt.Sprintf("%s/app/bll/impl/bll/b_%s.go", dir, util.ToLowerUnderlinedNamer(name))
 	return fullname
 }
 
@@ -42,9 +42,9 @@ package bll
 import (
 	"context"
 
-	"{{.PkgName}}/internal/app/bll"
-	"{{.PkgName}}/internal/app/model"
-	"{{.PkgName}}/internal/app/schema"
+	"{{.PkgName}}/app/bll"
+	"{{.PkgName}}/app/model"
+	"{{.PkgName}}/app/schema"
 	"{{.PkgName}}/pkg/errors"
 
 	"github.com/google/wire"
@@ -96,7 +96,6 @@ func (a *{{.Name}}) Update(ctx context.Context, id int, item *schema.{{.Name}}) 
 		return errors.ErrNotFound
 	}
 	item.ID = oldItem.ID
-	item.CreatedAt = oldItem.CreatedAt
 
 	return a.{{.Name}}Model.Update(ctx, id, item)
 }

@@ -7,7 +7,7 @@ import (
 )
 
 func getAPIMockInjectFileName(dir string) string {
-	fullname := fmt.Sprintf("%s/internal/app/api/mock/mock.go", dir)
+	fullname := fmt.Sprintf("%s/app/api/mock/mock.go", dir)
 	return fullname
 }
 
@@ -20,7 +20,7 @@ func insertAPIMockInject(ctx context.Context, dir, name string) error {
 			return
 		}
 
-		if injectStart == 1 && strings.Contains(line, injectContent){
+		if injectStart == 1 && strings.Contains(line, injectContent) {
 			injectStart = 0
 		}
 

@@ -8,7 +8,7 @@ import (
 )
 
 func getModelImplGormFileName(dir, name string) string {
-	fullname := fmt.Sprintf("%s/internal/app/model/impl/gorm/model/m_%s.go", dir, util.ToLowerUnderlinedNamer(name))
+	fullname := fmt.Sprintf("%s/app/model/impl/gorm/model/m_%s.go", dir, util.ToLowerUnderlinedNamer(name))
 	return fullname
 }
 
@@ -43,9 +43,9 @@ package model
 import (
 	"context"
 
-	"{{.PkgName}}/internal/app/model"
-	"{{.PkgName}}/internal/app/model/impl/gorm/entity"
-	"{{.PkgName}}/internal/app/schema"
+	"{{.PkgName}}/app/model"
+	"{{.PkgName}}/app/model/impl/gorm/entity"
+	"{{.PkgName}}/app/schema"
 	"{{.PkgName}}/pkg/errors"
 
 	"github.com/google/wire"

@@ -15,7 +15,7 @@ type entityMongoField struct {
 }
 
 func getEntityMongoFileName(dir, name string) string {
-	fullname := fmt.Sprintf("%s/internal/app/model/impl/mongo/entity/e_%s.go", dir, util.ToLowerUnderlinedNamer(name))
+	fullname := fmt.Sprintf("%s/app/model/impl/mongo/entity/e_%s.go", dir, util.ToLowerUnderlinedNamer(name))
 	return fullname
 }
 
@@ -73,7 +73,7 @@ package entity
 import (
 	"context"
 
-	"{{.PkgName}}/internal/app/schema"
+	"{{.PkgName}}/app/schema"
 	"{{.PkgName}}/pkg/util"
 
 	"go.mongodb.org/mongo-driver/bson"

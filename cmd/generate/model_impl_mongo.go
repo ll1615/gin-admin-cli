@@ -8,7 +8,7 @@ import (
 )
 
 func getModelImplMongoFileName(dir, name string) string {
-	fullname := fmt.Sprintf("%s/internal/app/model/impl/mongo/model/m_%s.go", dir, util.ToLowerUnderlinedNamer(name))
+	fullname := fmt.Sprintf("%s/app/model/impl/mongo/model/m_%s.go", dir, util.ToLowerUnderlinedNamer(name))
 	return fullname
 }
 
@@ -44,9 +44,9 @@ import (
 	"context"
 	"time"
 
-	"{{.PkgName}}/internal/app/model"
-	"{{.PkgName}}/internal/app/model/impl/mongo/entity"
-	"{{.PkgName}}/internal/app/schema"
+	"{{.PkgName}}/app/model"
+	"{{.PkgName}}/app/model/impl/mongo/entity"
+	"{{.PkgName}}/app/schema"
 	"{{.PkgName}}/pkg/errors"
 
 	"github.com/google/wire"

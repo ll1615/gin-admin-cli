@@ -16,7 +16,7 @@ type entityGormField struct {
 }
 
 func getEntityGormFileName(dir, name string) string {
-	fullname := fmt.Sprintf("%s/internal/app/model/impl/gorm/entity/e_%s.go", dir, util.ToLowerUnderlinedNamer(name))
+	fullname := fmt.Sprintf("%s/app/model/impl/gorm/entity/e_%s.go", dir, util.ToLowerUnderlinedNamer(name))
 	return fullname
 }
 
@@ -74,7 +74,7 @@ package entity
 import (
 	"context"
 
-	"{{.PkgName}}/internal/app/schema"
+	"{{.PkgName}}/app/schema"
 	"{{.PkgName}}/pkg/util"
 
 	"gorm.io/gorm"

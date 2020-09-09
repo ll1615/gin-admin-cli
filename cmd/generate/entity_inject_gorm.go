@@ -7,7 +7,7 @@ import (
 )
 
 func getEntityInjectGormFileName(dir string) string {
-	fullname := fmt.Sprintf("%s/internal/app/model/impl/gorm/gorm.go", dir)
+	fullname := fmt.Sprintf("%s/app/model/impl/gorm/gorm.go", dir)
 	return fullname
 }
 
@@ -22,7 +22,7 @@ func insertEntityInjectGorm(ctx context.Context, dir, name string) error {
 			return
 		}
 
-		if injectStart == 1 && strings.Contains(line, injectContent){
+		if injectStart == 1 && strings.Contains(line, injectContent) {
 			injectStart = 0
 		}
 

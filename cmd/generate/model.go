@@ -8,7 +8,7 @@ import (
 )
 
 func getModelFileName(dir, name string) string {
-	fullname := fmt.Sprintf("%s/internal/app/model/m_%s.go", dir, util.ToLowerUnderlinedNamer(name))
+	fullname := fmt.Sprintf("%s/app/model/m_%s.go", dir, util.ToLowerUnderlinedNamer(name))
 	return fullname
 }
 
@@ -42,7 +42,7 @@ package model
 import (
 	"context"
 
-	"{{.PkgName}}/internal/app/schema"
+	"{{.PkgName}}/app/schema"
 )
 
 // I{{.Name}} {{.Comment}}存储接口

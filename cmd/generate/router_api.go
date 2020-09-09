@@ -9,7 +9,7 @@ import (
 )
 
 func getRouterAPIFileName(dir string) string {
-	fullname := fmt.Sprintf("%s/internal/app/router/r_api.go", dir)
+	fullname := fmt.Sprintf("%s/app/router/r_api.go", dir)
 	return fullname
 }
 
@@ -34,7 +34,7 @@ func insertRouterAPI(ctx context.Context, dir, name string) error {
 			return
 		}
 
-		if apiStart == 1 && strings.Contains(line, pname){
+		if apiStart == 1 && strings.Contains(line, pname) {
 			apiStart = 0
 		}
 
