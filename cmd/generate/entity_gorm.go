@@ -100,7 +100,7 @@ type {{.Name}} struct {
 	{{.Fields}}
 }
 
-// ToSchema{{.Name}} 转换为demo对象
+// ToSchema{{.Name}} 转换为{{.Name}}对象
 func (a {{.Name}}) ToSchema{{.Name}}() *schema.{{.Name}} {
 	item := new(schema.{{.Name}})
 	util.StructMapToStruct(a, item)
